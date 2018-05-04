@@ -5,6 +5,11 @@ const api = () => {
 
 	return grade
 		.then(result => {
+			return {
+				properties: result.properties.filter(prop => !prop.propertyConditions)
+			}
+		})
+		.then(result => {
 			// нужно получить все уникальные propertyId
 			const uniqPropertyIds = Object.keys(
 				result.properties
@@ -25,7 +30,7 @@ const api = () => {
 		  // props = [{id, standard}];
 		  // заменить property на standard
 		  // на выходе ожидаем массив
-			return grades.map(grade => {
+			return grades.properties.map(grade => {
 				const {region, property} = grade;
 				const {standard} = props.filter(p => p.id === property)[0];
 				
