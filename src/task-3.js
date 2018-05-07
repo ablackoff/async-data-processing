@@ -1,39 +1,6 @@
 import {getStandards} from './base';
-
-function getPropertyStandardsWithRegions() {
-	return Promise.resolve([{
-		'region': 'regionId1',
-		'standard': 'standardId2'
-	}, {
-		'region': 'regionId1',
-		'standard': 'standardId1'
-	}, {
-		'region': 'regionId3',
-		'standard': 'standardId2'
-	}, {
-		'region': 'regionId2',
-		'standard': 'standardId1'
-	}]);
-}
-
-function getConditionStandardsWithRegions() {
-	return Promise.resolve([{
-		'region': 'regionId1',
-		'standard': 'standardId1'
-	}, {
-		'region': 'regionId1',
-		'standard': 'standardId3'
-	}, {
-		'region': 'regionId1',
-		'standard': 'standardId2'
-	}, {
-		'region': 'regionId4',
-		'standard': 'standardId1'
-	}, {
-		'region': 'regionId4',
-		'standard': 'standardId3'
-	}]);
-}
+import getPropertyStandardsWithRegions from './task-1';
+import getConditionStandardsWithRegions from './task-2';
 
 // функция, которая находит объект в массиве
 // возвращает true если объект не был найден, false если был найден
@@ -81,11 +48,25 @@ const api = () => {
 			// из массива standardsWithRegions получить массив типов стандартов
 			// - находим уникальные стандарты
 			// - вызываю getStandards с массивом стандартов
-			const standards = [];
+			const uniqId = Object.keys(
+				standardsWithRegions
+					.map(standard => standard.standard)
+					.reduce((acc, item) => {
+						acc[item] = true;
+						return acc;
+					}, {})
+			);
+
+			return Promise.all([
+				standardsWithRegions,
+				getStandards(uniqId)
+			]);
+		})
+		.then(([standardsWithRegions, standards]) => {
 
 			return {
-				standards,
-				standardsWithRegions
+				standardsWithRegions,
+				standards
 			}
 		});
 };

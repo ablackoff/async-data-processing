@@ -32,7 +32,7 @@ const api = () => {
 		  // на выходе ожидаем массив
 			return grades.properties.map(grade => {
 				const {region, property} = grade;
-				const {standard} = props.filter(p => p.id === property)[0];
+				const {standard} = props.find(p => p.id === property);
 				
 				return {
 					standard,
