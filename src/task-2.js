@@ -27,7 +27,7 @@ const api = () => {
 				});
 			});
 		})
-		.then(([result1, result2]) => result1.concat(result2));
+		.then(res => [].concat(...res));
 };
 
 export default api;
