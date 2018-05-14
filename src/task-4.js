@@ -22,24 +22,32 @@ const api = () => {
 				
 				return getStandardTypes(standardTypeIds)
 					.then(standardType => {
-						return {...standardType, region: item.region};
-				  });
-
-				// const regions = standardsWithRegions
-				// 	.filter(r => standard.id === r.standard)
-				// 	.map(r => r.region);
-				//
-				// return {
-				// 	id: standard.standardType,
-				// 	regions
-				// };
+						return {...standardType[0], region: item.region};
+				    });
 			}));
 		})
 		.then(standardTypes => {
 			console.log(standardTypes);
 
-			return standardTypes;
 
+
+			// const uniqId = Object.keys(
+			// 	standardTypes
+			// 		.map(type => type.id)
+			// 		.reduce((acc, item) => {
+			// 			acc[item] = true;
+			// 			return acc;
+			// 		}, {})
+			// );
+			// const regions = [];
+			//
+			// console.log(uniqId);
+
+
+			// return {
+			// 	id: uniqId,
+			// 	regions
+			// };
 		});
 
 
