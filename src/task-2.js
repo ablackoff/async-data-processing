@@ -1,4 +1,5 @@
 import {getGrade} from './base';
+// import _ from 'lodash';
 
 const api = () => {
 	const grade = getGrade();
@@ -27,7 +28,15 @@ const api = () => {
 				});
 			});
 		})
-		.then(res => [].concat(...res));
+		.then(res => {
+
+			// return [].concat(...res)
+			// return res.reduce((acc, item) => [...acc, ...item]);
+			// return _.concat(...res);
+			return res.reduce((acc, item) => acc.concat(item));
+
+
+		});
 };
 
 export default api;
