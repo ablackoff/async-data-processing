@@ -1,6 +1,10 @@
 import {getStandardTypes} from './base';
 import getStandards from './task-3';
 
+function unique (arr) {
+	return [...new Set(arr)]
+}
+
 const api = () => {
 
 	return getStandards()
@@ -20,19 +24,13 @@ const api = () => {
 		})
 		.then(standardTypes => {
 
-			const uniqId = [...new Set(standardTypes.map(item => item.id))];
+			const uniqId = unique(standardTypes.map(item => item.id));
 
 			return uniqId.map(id => {
 
-				const regions = standardTypes.reduce((acc, item) => {
-
-					if (id === item.id && acc.indexOf(item.region) === -1) {
-						acc.push(item.region);
-					}
-
-					return acc;
-
-				}, []);
+				const regions = unique(standardTypes
+					.filter(item => id === item.id)
+					.map(item => item.region));
 
 				return {
 					id: id,
