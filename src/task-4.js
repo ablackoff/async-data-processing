@@ -11,9 +11,19 @@ const api = () => {
 			console.log('standardsWithRegions', standardsWithRegions);
 			console.log('standards', standards);
 
-			return standardsWithRegions.map(r => {
+			return Promise.all(standardsWithRegions.map(item => {
+				/*
+					item === { standard: '...', region: '...' }
+				*/
 
-
+				const standardTypeIds = standards
+					.filter(s => s.id === item.standard)
+					.map(s => s.standardType);
+				
+				return getStandardTypes(standardTypeIds)
+					.then(standardType => {
+						return {...standardType, region: item.region};
+				  });
 
 				// const regions = standardsWithRegions
 				// 	.filter(r => standard.id === r.standard)
@@ -23,7 +33,7 @@ const api = () => {
 				// 	id: standard.standardType,
 				// 	regions
 				// };
-			});
+			}));
 		})
 		.then(standardTypes => {
 			console.log(standardTypes);
