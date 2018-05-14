@@ -3,18 +3,10 @@ import getStandards from './task-3';
 
 const api = () => {
 
-	// обьединить массивы standards и standardsWithRegions
-	// - получить обьект со свойствами standardType и region
-
 	return getStandards()
 		.then(({standards, standardsWithRegions}) => {
-			console.log('standardsWithRegions', standardsWithRegions);
-			console.log('standards', standards);
 
 			return Promise.all(standardsWithRegions.map(item => {
-				/*
-					item === { standard: '...', region: '...' }
-				*/
 
 				const standardTypeIds = standards
 					.filter(s => s.id === item.standard)
@@ -27,34 +19,27 @@ const api = () => {
 			}));
 		})
 		.then(standardTypes => {
-			console.log(standardTypes);
 
+			const uniqId = [...new Set(standardTypes.map(item => item.id))];
 
+			return uniqId.map(id => {
 
-			// const uniqId = Object.keys(
-			// 	standardTypes
-			// 		.map(type => type.id)
-			// 		.reduce((acc, item) => {
-			// 			acc[item] = true;
-			// 			return acc;
-			// 		}, {})
-			// );
-			// const regions = [];
-			//
-			// console.log(uniqId);
+				const regions = standardTypes.reduce((acc, item) => {
 
+					if (id === item.id && acc.indexOf(item.region) === -1) {
+						acc.push(item.region);
+					}
 
-			// return {
-			// 	id: uniqId,
-			// 	regions
-			// };
+					return acc;
+
+				}, []);
+
+				return {
+					id: id,
+					regions: regions.sort()
+				}
+			});
 		});
-
-
-
-	// избавится от дублей регионов
-
-	// сделать запрос в getStandardTypes с массивом standardType
 };
 
 export default api;
