@@ -37,6 +37,8 @@ const api = () => {
 			]);
 		})
 		.then(([standardsWithRegions, standards]) => {
+			// console.log('standardsWithRegions', standardsWithRegions);
+			// console.log('standards', standards);
 
 			return {
 				standardsWithRegions,
