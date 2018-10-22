@@ -10,7 +10,6 @@ const api = () => {
 			}
 		})
 		.then(result => {
-			// нужно получить все уникальные propertyId
 			const uniqPropertyIds = Object.keys(
 				result.properties
 					.map(grade => grade.property)
@@ -26,10 +25,6 @@ const api = () => {
 			]);
 		})
 		.then(([grades, props]) => {
-			// grades = [{property, region}];
-		  // props = [{id, standard}];
-		  // заменить property на standard
-		  // на выходе ожидаем массив
 			return grades.properties.map(grade => {
 				const {region, property} = grade;
 				const {standard} = props.find(p => p.id === property);

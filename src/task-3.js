@@ -16,11 +16,6 @@ function compareObject(a, b) {
 
 const api = () => {
 	const conditionStandardsWithRegions = getConditionStandardsWithRegions();
-	const propertyStandardsWithRegions = getPropertyStandardsWithRegions();
-
-	// нужно получить стандарты с регионами в одном массиве
-	// - соединить conditional и property
-	// - убрать дубликаты
 
 	return Promise
 		.all([
@@ -30,24 +25,7 @@ const api = () => {
 		.then(([standardsWithRegions1, standardsWithRegions2]) => {
 			return standardsWithRegions1.concat(standardsWithRegions2);
 		})
-		/*
 		.then(standardsWithRegions => {
-			// acc = [1, 2], item = 1
-			// пробегаемся по всем элементам acc
-			// добавляем айтем в конец массива, если его там нет
-			return standardsWithRegions.reduce((acc, item) => {
-				if (findObject(acc, item)) {
-					acc.push(item);
-				}
-
-				return acc;
-			}, []);
-		})
-		*/
-		.then(standardsWithRegions => {
-			// из массива standardsWithRegions получить массив типов стандартов
-			// - находим уникальные стандарты
-			// - вызываю getStandards с массивом стандартов
 			const uniqId = Object.keys(
 				standardsWithRegions
 					.map(standard => standard.standard)
