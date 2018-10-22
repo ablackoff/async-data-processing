@@ -4,6 +4,8 @@ import getStandards from './task-3';
 const api = () => {
 	const {standards, standardsWithRegions} = getStandards();
 
+
+
 	return Promise.resolve([]);
 }
 
