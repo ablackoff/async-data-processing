@@ -1,5 +1,4 @@
 import {getGrade} from './base';
-// import _ from 'lodash';
 
 const api = () => {
 	const grade = getGrade();

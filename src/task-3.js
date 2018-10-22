@@ -2,14 +2,10 @@ import {getStandards} from './base';
 import getPropertyStandardsWithRegions from './task-1';
 import getConditionStandardsWithRegions from './task-2';
 
-// функция, которая находит объект в массиве
-// возвращает true если объект не был найден, false если был найден
 function findObject(arr, item) {
 	return !arr.find(elem => compareObject(elem, item));
 }
 
-// функция, которая сравнивает 2 объекта
-// возвращает true = совпадают, false = не совпадают
 function compareObject(a, b) {
 	return a.region === b.region && a.standard === b.standard;
 }
