@@ -1,7 +1,7 @@
 {
-  "name": "school",
-  "version": "1.0.0",
-  "description": "",
+  "name": "async-data-processing",
+  "version": "1.1.0",
+  "description": "async-data-processing",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -9,8 +9,11 @@
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "async",
+    "data"
+  ],
+  "author": "anton9408",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
