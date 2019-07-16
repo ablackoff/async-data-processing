@@ -16,9 +16,12 @@
   "author": "anton9408",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-jest": "^23.6.0",
-    "babel-preset-env": "^1.7.0",
-    "jest": "^23.6.0"
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0"
+  },
+  "dependencies": {
   }
 }
