@@ -12,6 +12,7 @@ function compareObject(a, b) {
 
 const api = () => {
 	const conditionStandardsWithRegions = getConditionStandardsWithRegions();
+	const propertyStandardsWithRegions = getPropertyStandardsWithRegions();
 
 	return Promise
 		.all([
